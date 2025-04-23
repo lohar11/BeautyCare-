@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <link rel="stylesheet" href="style3.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding-top: 2500px; /* Fixed header space */
+    }
+
+    .container {
+      width: 30%;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px #303030;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #36f456;
+      color: rgb(6, 6, 6);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #30da41;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header will be loaded here -->
+  <div id="header-placeholder"></div>
+  <div class="header-spacer"></div>
+
+  <!-- Profile container -->
+  <div class="container">
+    <h2>User Profile</h2>
+    <form>
+      <label>Name:</label>
+      <input type="text" id="profile-name" disabled>
+
+      <label>Email:</label>
+      <input type="email" id="profile-email" disabled>
+
+      <label>Password:</label>
+      <input type="password" id="profile-password" disabled>
+
+      <label>Date of Birth:</label>
+      <input type="date" id="profile-dob" disabled>
+
+      <button type="button" onclick="logout()">Signout</button>
+    </form>
+  </div>
+
+  <!-- Footer will be loaded here -->
+  <div id="footer-placeholder"></div>
+  <div class="footor-spacer"></div>
+
+  <script>
+    // Load header and footer
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header-placeholder").innerHTML = data;
+      });
+
+  
+
+    // Load user profile data
+    document.addEventListener("DOMContentLoaded", () => {
+      const user = JSON.parse(localStorage.getItem("userData"));
+      const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+      if (user && isLoggedIn === "true") {
+        document.getElementById("profile-name").value = user.name;
+        document.getElementById("profile-email").value = user.email;
+        document.getElementById("profile-password").value = user.password;
+        document.getElementById("profile-dob").value = user.dob;
+      } else {
+        alert("You are not signed in. Redirecting to login...");
+        window.location.href = "login.html";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("userData");
+      alert("Signed out successfully.");
+      window.location.href = "login.html";
+    }
+  </script>
+   <!-- ✅ Footer -->
+   <div class="wrapper">
+    <p class="copyright">
+      &copy; 2025 SkinCare 
+    </p>
+  </div>
+
+</body>
+</html>

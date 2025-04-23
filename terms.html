@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms & Conditions</title>
+
+  <!-- External CSS (if any) -->
+  <link rel="stylesheet" href="style3.css" /> <!-- Optional: your shared CSS -->
+  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding-top: 220px; /* space for header */
+      background-color: #ffff;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    h2 {
+      color: #333;
+    }
+    .btn {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .btn:hover {
+      background: #71da64;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Header container -->
+  <div id="header-container"></div>
+
+  <!-- ✅ Terms Section -->
+  <div class="container">
+    <h2>Skin Care Products</h2>
+    <h3>Terms & Conditions</h3>
+    <a id="termsLink" class="btn" href="#" target="_blank">View Terms</a>
+    <a id="conditionsLink" class="btn" href="#" target="_blank">View Conditions</a>        
+  </div>
+  
+
+  <!-- ✅ Load Header -->
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header-container").innerHTML = data;
+      });
+  </script>
+
+
+  <!-- ✅ JavaScript file -->
+  <script src="term.js" type="module"></script>
+ <!-- ✅ Footer -->
+ <div class="wrapper">
+    <p class="copyright">
+      &copy; 2025 SkinCare 
+    </p>
+  </div>
+</body>
+</html>

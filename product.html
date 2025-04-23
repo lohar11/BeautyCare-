@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Page</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="product.css" />
+
+  <!-- JS files -->
+  <script type="module" src="product1F.js" defer></script>
+  <script type="module" src="product.js" defer></script>
+</head>
+<body>
+
+  <!-- ✅ Header will be injected dynamically -->
+  <div id="header-container"></div>
+
+  <!-- ✅ Product Title & Cart -->
+  <div class="product-header">
+    <h1 class="product-title">Shop Now</h1>
+    <div class="cart" id="cart-btn">
+      🛒 Cart (<span id="cart-count">0</span>)
+    </div>
+  </div>
+
+  <!-- ✅ Product List -->
+  <div id="menu-list" class="menu-list"></div>
+
+  <!-- ✅ Product Details Section -->
+  <div id="product-details" style="display: none;">
+    <button id="back-to-products"> 🔙 Back to Products</button>
+    <h2 id="detail-title"></h2>
+    <img id="detail-image" src="" alt="Product Image" width="200">
+    <p id="detail-description"></p>
+    <p class="price">Price: ₹<span id="detail-price"></span></p>
+    <button class="add-to-cart" id="detail-add-cart">Add to Cart</button>
+    <a href="payment.html"><button>Go to Payment</button></a>
+  </div>
+
+  <!-- ✅ Cart Section -->
+  <div id="cart-section" style="display: none;">
+    <h3>Your Cart</h3>
+    <ul id="cart-items"></ul>
+    <p>Total: <span id="total-price">0</span></p>
+    <button id="checkout-btn">Checkout</button>
+    <button id="close-cart">Close Cart</button>
+  </div>
+
+  <!-- ✅ Footer -->
+  <div class="wrapper">
+    <p class="copyright">
+      &copy; 2025 SkinCare 
+    </p>
+  </div>
+
+  <!-- ✅ Script to load header -->
+  <script>
+    fetch("header.html")
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById("header-container").innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>

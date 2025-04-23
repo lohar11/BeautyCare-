@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      background: white;
+      color: black;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 50px auto;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .payment-options {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .payment-options label {
+      display: flex;
+      align-items: center;
+      flex-direction: column-reverse;
+      gap: 10px;
+      font-size: 16px;
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    input[type="radio"] {
+      transform: scale(1.2);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    input, select {
+      padding: 8px;
+      margin: 5px 0;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    img {
+      margin-top: 10px;
+      width: 150px;
+    }
+
+    #payment-status {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Choose Payment Method</h2>
+    <h3>Total Price: ₹799<span id="total-price"></span></h3>
+
+    <form id="payment-form">
+      <div class="payment-options">
+        <label><input type="radio" name="payment-method" value="UPI"> UPI</label>
+        <label><input type="radio" name="payment-method" value="Card"> Credit/Debit Card</label>
+        <label><input type="radio" name="payment-method" value="COD"> Cash on Delivery (COD)</label>
+      </div>
+
+      <div id="qr-code" class="hidden">
+        <p>Scan QR Code to Pay:</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay" alt="UPI QR Code">
+      </div>
+
+      <div id="card-section" class="hidden">
+        <p>Enter Card Details:</p>
+        <input type="text" id="card-number" placeholder="Card Number" maxlength="16">
+        <input type="text" id="card-holder" placeholder="Card Holder Name">
+        <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)">
+        <input type="password" id="cvv" placeholder="CVV" maxlength="3">
+      </div>
+
+      <div id="address-section" class="hidden">
+        <p>Enter Delivery Address:</p>
+        <input type="text" id="address" placeholder="Your Address">
+      </div>
+
+      <button type="submit">Pay Now</button>
+    </form>
+
+    <p id="payment-status"></p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const paymentForm = document.getElementById("payment-form");
+      const paymentStatus = document.getElementById("payment-status");
+      const qrCode = document.getElementById("qr-code");
+      const cardSection = document.getElementById("card-section");
+      const addressSection = document.getElementById("address-section");
+      const payNowButton = paymentForm.querySelector("button");
+      const totalPriceElement = document.getElementById("total-price");
+
+      // Calculate total from cart
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      let total = 0;
+      cartItems.forEach(item => {
+        total += parseFloat(item.price) * parseInt(item.quantity);
+      });
+      totalPriceElement.textContent = total.toFixed(2);
+
+      // Show selected payment section
+      document.querySelectorAll('input[name="payment-method"]').forEach((input) => {
+        input.addEventListener("change", function () {
+          qrCode.classList.add("hidden");
+          cardSection.classList.add("hidden");
+          addressSection.classList.add("hidden");
+          payNowButton.classList.remove("hidden");
+
+          if (this.value === "UPI") {
+            qrCode.classList.remove("hidden");
+            payNowButton.classList.add("hidden");
+            paymentStatus.textContent = "Processing UPI Payment...";
+            setTimeout(() => {
+              paymentStatus.textContent = "UPI Payment Successful!";
+              redirectToHome();
+            }, 6000);
+          } else if (this.value === "Card") {
+            cardSection.classList.remove("hidden");
+          } else if (this.value === "COD") {
+            addressSection.classList.remove("hidden");
+          }
+        });
+      });
+
+      // Submit handler
+      paymentForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const selectedMethod = document.querySelector('input[name="payment-method"]:checked');
+
+        if (!selectedMethod) {
+          alert("Please select a payment method.");
+          return;
+        }
+
+        if (selectedMethod.value === "COD") {
+          const address = document.getElementById("address").value.trim();
+          if (address === "") {
+            alert("Please enter your delivery address.");
+            return;
+          }
+          paymentStatus.textContent = "Order Confirmed! Your order will be delivered to: " + address;
+          setTimeout(() => {
+            redirectToHome();
+          }, 2000);
+        } else if (selectedMethod.value === "Card") {
+          const cardNumber = document.getElementById("card-number").value.trim();
+          const cardHolder = document.getElementById("card-holder").value.trim();
+          const expiry = document.getElementById("expiry").value.trim();
+          const cvv = document.getElementById("cvv").value.trim();
+
+          // Validation
+          if (!/^\d{16}$/.test(cardNumber)) {
+            alert("Card number must be exactly 16 digits.");
+            return;
+          }
+          if (cardHolder === "") {
+            alert("Please enter the card holder name.");
+            return;
+          }
+          if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+            alert("Please enter a valid expiry date (MM/YY).");
+            return;
+          }
+          if (!/^\d{3}$/.test(cvv)) {
+            alert("CVV must be 3 digits.");
+            return;
+          }
+
+          paymentStatus.textContent = "Processing Card Payment...";
+          setTimeout(() => {
+            paymentStatus.textContent = "Card Payment Successful!";
+            redirectToHome();
+          }, 2000);
+        }
+      });
+
+      function redirectToHome() {
+        setTimeout(() => {
+          localStorage.removeItem("cart"); // Optional: Clear cart after purchase
+          window.location.href = "index3.html"; // Redirect to home
+        }, 2000);
+      }
+    });
+  </script>
+</body>
+</html>

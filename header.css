@@ -1,0 +1,159 @@
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+.header .input-wrapper,
+.header-action-btn {display: none;}
+
+.navbar { 
+  display: flex; /* Navbar ko wapas visible karne ke liye */
+  justify-content: center; 
+  align-items: center;
+  gap: 20px;
+}
+
+.header {
+  position: relative; /* Fix position */
+  padding-block-end: 0; /* Extra padding hataya */
+}
+
+.alert {
+  background-color: var(--pale-spring-bud);
+  color: var(--black);
+  font-size: var(--fs-7);
+  text-transform: uppercase;
+  font-weight: var(--fw-700);
+  letter-spacing: 2px;
+  text-align: center;
+  padding-block: 15px;
+}
+
+.header-top {
+  position: relative; /* Absolute ki jagah relative diya */
+  top: auto;
+  bottom: auto;
+  background-color: var(--white);
+  width: 100%;
+  padding-block: 26px;
+  z-index: 10;
+}
+
+.header-top.active {
+  position: fixed;
+  top: 0;
+  transform: translateY(0);
+  transition: var(--transition-2);
+  box-shadow: var(--shadow-1);
+}
+
+.header-top.header-hide {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.header-top .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-open-btn {
+  width: 26px;
+  display: grid;
+  gap: 6px;
+  padding-block: 5px;
+}
+
+.nav-open-btn .line {
+  height: 2px;
+  background-color: var(--black);
+}
+
+.nav-open-btn .line-1 { width: 15px; }
+
+.nav-open-btn .line-3 { width: 18px; }
+
+.header-action-btn {
+  font-size: 28px;
+  transition: var(--transition-1);
+}
+
+.header-action-btn:is(:hover, :focus) { 
+  color: var(--black_70); 
+}
+
+
+
+
+
+
+/*-----------------------------------*\
+  #MOBILE NAVBAR
+\*-----------------------------------*/
+
+.sidebar { z-index: 5; }
+
+.mobile-navbar {
+  background-color: var(--white);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  max-width: 350px;
+  width: 100%;
+  padding: 25px 40px;
+  z-index: 6;
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: 0.25s var(--cubic-in);
+}
+
+.mobile-navbar.active {
+  visibility: visible;
+  transform: translateX(0);
+  transition: 0.4s var(--cubic-out);
+}
+
+.mobile-navbar .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-end: 55px;
+}
+
+.nav-close-btn {
+  font-size: 28px;
+  color: var(--hoockers-green);
+}
+
+.nav-close-btn ion-icon { --ionicon-stroke-width: 40px; }
+
+.mobile-navbar .navbar-link {
+  color: var(--black);
+  font-size: var(--fs-8);
+  text-transform: uppercase;
+  font-weight: var(--fw-600);
+  letter-spacing: 1px;
+  padding-block: 5px;
+  transition: var(--transition-1);
+}
+
+.mobile-navbar .navbar-link:is(:hover, :focus) { color: var(--hoockers-green); }
+
+.overlay {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+  transition: var(--transition-1);
+}
+
+.overlay.active {
+  background-color: var(--black_50);
+  pointer-events: all;
+}

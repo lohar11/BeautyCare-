@@ -1,0 +1,64 @@
+/* Styling for form container */
+.container {
+    background: #fff; /* Slightly more opaque for better readability */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px #544f4f;
+    text-align: center;
+    width: 380px;
+}
+
+/* Input fields */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #e9dfdf;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* Date input specific styling */
+input[type="date"] {
+    color: #443c3c;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Hidden form */
+.hidden {
+    display: none;
+}
+
+/* Paragraph styling for links */
+p {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    text-decoration: underline;
+}

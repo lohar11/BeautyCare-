@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce website</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glowing - Reveal The Beauty of Skin</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="style3.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- 
+    - preload images
+  -->
+  <link rel="preload" as="image" href="img/logo.png">
+  <link rel="preload" as="image" href="img/hero-banner-2.png">
+  <link rel="preload" as="image" href="img/hero-banner-1.png">
+  <link rel="preload" as="image" href="img/hero-banner-3.png">
+
+</head>
+
+<body id="top">
+
+ <!-- 
+    - #HEADER
+  -->
+
+  <header class="header">
+
+    <div class="alert">
+      <div class="container">
+        <p class="alert-text">Free Shipping On All INDIA Orders 500 Rs+</p>
+      </div>
+    </div>
+
+    <div class="header-top" data-header>
+      <div class="container">
+
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+          <span class="line line-1"></span>
+          <span class="line line-2"></span>
+          <span class="line line-3"></span>
+        </button>
+
+        <div class="input-wrapper">
+          <input type="search" name="search" placeholder="Search product" class="search-field">
+
+          <button class="search-submit" aria-label="search">
+            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+              document.querySelector(".search-submit").addEventListener("click", function () {
+                  let query = document.querySelector(".search-field").value.toLowerCase();
+          
+                  if (query === "product") {
+                      window.location.href = "product.html"; 
+                  } else if (query === "collection") {
+                      window.location.href = "#collection"; 
+                  } else if (query === "home") {
+                      window.location.href = "#home"; 
+                  } else if (query === "offer") {
+                      window.location.href = "#offer"; 
+                  } else if (query === "blog") {
+                      window.location.href = "#blog"; 
+                  } else if (query === "profile") {
+                      window.location.href = "profile.html"; 
+                  } else {
+                      alert("No matching page found!"); 
+                  }
+              });
+
+              // Manage authentication state
+              const userLoggedIn = localStorage.getItem("userData");
+              const signInLink = document.getElementById("signInLink");
+              const profileLink = document.getElementById("profileLink");
+              const signOutLink = document.getElementById("signOutLink");
+
+              if (userLoggedIn) {
+                  signInLink.style.display = "none";
+                  profileLink.style.display = "block";
+                  signOutLink.style.display = "block";
+              } else {
+                  signInLink.style.display = "block";
+                  profileLink.style.display = "none";
+                  signOutLink.style.display = "none";
+              }
+
+              // Sign out functionality
+              signOutLink.addEventListener("click", function () {
+                  localStorage.removeItem("userData");
+                  alert("Signed out successfully!");
+                  location.reload();
+              });
+          });
+        </script>
+
+        <a href="#" class="logo">
+          <img src="img/logo.png" width="100" height="26" alt="Glowing">
+        </a>
+
+        <div class="header-actions">
+          <a href="product.html"  aria-label="profile"></a>
+            <ion-icon name="profile-outline" aria-hidden="true" aria-hidden="true"></ion-icon>
+
+            <span class="btn-badge"></span>
+          </button>
+        </div>
+
+        <nav class="navbar">
+          <ul class="navbar-list">
+
+            <li>
+              <a href="#home" class="navbar-link has-after">Home</a>
+            </li>
+          
+            
+            <li>
+              <a href="#collection" class="navbar-link has-after">Collection</a>
+            </li>
+
+            <li>
+              <a href="product.html" class="navbar-link has-after">Product</a>
+            </li>
+
+            <li>
+              <a href="#offer" class="navbar-link has-after">Offer</a>
+            </li>
+
+            <li>
+              <a href="#blog" class="navbar-link has-after">Blog</a>
+            </li>
+            
+            <li id="signInLink">
+              <a href="login.html" class="navbar-link has-after">Sign in\Sign Up</a>
+            </li>
+            <li id="profileLink" style="display: none;">
+              <a href="profile.html" class="navbar-link has-after">Profile</a>
+            </li>
+
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+
+  </header>
+  
+
+
+      <!-- 
+        - #HERO
+      -->
+
+      <section class="section hero" id="home" aria-label="hero" data-section>
+        <div class="container">
+
+          <ul class="has-scrollbar">
+
+            <li class="scrollbar-item">
+              <div class="hero-card has-bg-image" style="background-image: url('img/hero-banner-1.png')">
+
+                <div class="card-content">
+
+                  <h1 class="h1 hero-title">
+                    Reveal The <br>
+                    Beauty of Skin
+                  </h1>
+
+                  <p class="hero-text">
+                    Made using clean, non-toxic ingredients, our products are designed for everyone.
+                  </p>
+
+                  <p class="price">Starting at 199.99 Rs</p>
+
+                  <a href="product.html" class="btn btn-primary">Shop Now</a>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="hero-card has-bg-image" style="background-image: url('img/hero-banner-2.png')">
+
+                <div class="card-content">
+
+                  <h1 class="h1 hero-title">
+                    Reveal The <br>
+                    Beauty of Skin
+                  </h1>
+
+                  <p class="hero-text">
+                    Made using clean, non-toxic ingredients, our products are designed for everyone.
+                  </p>
+
+                  <p class="price">Starting at 199.99 Rs</p>
+
+                  <a href="product.html" class="btn btn-primary">Shop Now</a>
+                  <section class="section shop" id="shop" aria-label="shop" data-section>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li class="scrollbar-item">
+              <div class="hero-card has-bg-image" style="background-image: url('img/hero-banner-3.png')">
+
+                <div class="card-content">
+
+                  <h1 class="h1 hero-title">
+                    Reveal The <br>
+                    Beauty of Skin
+                  </h1>
+
+                  <p class="hero-text">
+                    Made using clean, non-toxic ingredients, our products are designed for everyone.
+                  </p>
+
+                  <p class="price">Starting at 199.99 Rs</p>
+
+                  <a href="product.html" class="btn btn-primary">Shop Now</a>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+      <!-- 
+        - collection.html
+      -->
+<section class="section collection" id="collection" aria-label="collection" data-section>
+        <div class="container">
+
+          <ul class="collection-list">
+
+            <li>
+              <div class="collection-card has-before hover:shine">
+
+                <h2 class="h2 card-title">Summer Collection</h2>
+
+                <p class="card-text">Starting at 299.99 Rs</p>
+
+                <a href="product.html" class="btn-link">
+                  <span class="span">Shop Now</span>
+
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
+
+                <div class="has-bg-image" style="background-image: url('img/collection-1.png')"></div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="collection-card has-before hover:shine">
+
+                <h2 class="h2 card-title">What’s New?</h2>
+
+                <p class="card-text">Get the glow</p>
+
+                <a href="#" class="btn-link">
+                  <span class="span">Discover Now</span>
+
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
+
+                <div class="has-bg-image" style="background-image: url('img/collection-2.png')"></div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="collection-card has-before hover:shine">
+
+                <h2 class="h2 card-title">Buy 1 Get 1</h2>
+
+                <p class="card-text">Starting at 399.99 Rs</p>
+
+                <a href="#" class="btn-link">
+                  <span class="span">Discover Now</span>
+
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
+
+                <div class="has-bg-image" style="background-image: url('img/collection-3.png')"></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+     
+     
+    
+
+      
+
+
+
+
+      
+
+
+
+      <!-- 
+        - #BANNER
+      -->
+
+      <section class="section banner" aria-label="banner" data-section>
+        <div class="container">
+
+          <ul class="banner-list">
+
+            <li>
+              <div class="banner-card banner-card-1 has-before hover:shine">
+
+                <p class="card-subtitle">New Collection</p>
+
+                <h2 class="h2 card-title">Discover Our Autumn Skincare</h2>
+
+                <a href="#collection" class="btn btn-secondary">Explore More</a>
+
+                <div class="has-bg-image" style="background-image: url('img/banner-1.jpg')"></div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="banner-card banner-card-2 has-before hover:shine">
+
+                <h2 class="h2 card-title">25% off Everything</h2>
+
+                <p class="card-text">
+                  Makeup with extended range in colors for every human.
+                </p>
+
+                <a href="#" class="btn btn-secondary">Shop Sale</a>
+
+                <div class="has-bg-image" style="background-image: url('img/banner-2.png')"></div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #FEATURE
+      -->
+
+      <section class="section feature" aria-label="feature" data-section>
+        <div class="container">
+
+          <h2 class="h2-large section-title">Why Shop with Glowing?</h2>
+
+          <ul class="flex-list">
+
+            <li class="flex-item">
+              <div class="feature-card">
+
+                <img src="img/feature-1.jpg" width="204" height="236" loading="lazy" alt="Guaranteed PURE"
+                  class="card-icon">
+
+                <h3 class="h3 card-title">Guaranteed PURE</h3>
+
+                <p class="card-text">
+                  All Grace formulations adhere to strict purity standards and will never contain harsh or toxic
+                  ingredients
+                </p>
+
+              </div>
+            </li>
+
+            <li class="flex-item">
+              <div class="feature-card">
+
+                <img src="img/feature-2.jpg" width="204" height="236" loading="lazy"
+                  alt="Completely Cruelty-Free" class="card-icon">
+
+                <h3 class="h3 card-title">Completely Cruelty-Free</h3>
+
+                <p class="card-text">
+                  All Grace formulations adhere to strict purity standards and will never contain harsh or toxic
+                  ingredients
+                </p>
+
+              </div>
+            </li>
+
+            <li class="flex-item">
+              <div class="feature-card">
+
+                <img src="img/feature-3.jpg" width="204" height="236" loading="lazy"
+                  alt="Ingredient Sourcing" class="card-icon">
+
+                <h3 class="h3 card-title">Ingredient Sourcing</h3>
+
+                <p class="card-text">
+                  All Grace formulations adhere to strict purity standards and will never contain harsh or toxic
+                  ingredients
+                </p>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #OFFER
+      -->
+
+      <section class="section offer" id="offer" aria-label="offer" data-section>
+        <div class="container">
+
+          <figure class="offer-banner">
+            <img src="img/offer-banner-1.jpg" width="305" height="408" loading="lazy" alt="offer products"
+              class="w-100">
+
+            <img src="img/offer-banner-2.jpg" width="450" height="625" loading="lazy" alt="offer products"
+              class="w-100">
+          </figure>
+
+          <div class="offer-content">
+
+            <p class="offer-subtitle">
+              <span class="span">Special Offer</span>
+
+              <span class="badge" aria-label="20% off">-20%</span>
+            </p>
+
+            <h2 class="h2-large section-title">Mountain Pine Bath Oil</h2>
+
+            <p class="section-text">
+              Made using clean, non-toxic ingredients, our products are designed for everyone.
+            </p>
+
+            <div class="countdown">
+
+              <span class="time" aria-label="days">24</span>
+              <span class="time" aria-label="hours">20</span>
+              <span class="time" aria-label="minutes">28</span>
+              <span class="time" aria-label="seconds">50</span>
+
+            </div>
+
+            <a href="product.html" class="btn btn-primary">Get Only 299.00 Rs</a>
+
+          </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #BLOG
+      -->
+
+      <section class="section blog" id="blog" aria-label="blog" data-section>
+        <div class="container">
+
+          <h2 class="h2-large section-title">More to Discover</h2>
+
+          <ul class="flex-list">
+
+            <li class="flex-item">
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder has-before hover:shine" style="--width: 700; --height: 450;">
+                  <img src="img/blog-1.jpg" width="700" height="450" loading="lazy" alt="Find a Store"
+                    class="img-cover">
+                </figure>
+
+                <h3 class="h3">
+                  <a href="#" class="card-title">Find a Store</a>
+                </h3>
+
+                <a href="#" class="btn-link">
+                  <span class="span">Our Store</span>
+
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+
+              </div>
+            </li>
+
+            <li class="flex-item">
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder has-before hover:shine" style="--width: 700; --height: 450;">
+                  <img src="img/blog-2.jpg" width="700" height="450" loading="lazy" alt="From Our Blog"
+                    class="img-cover">
+                </figure>
+
+                <h3 class="h3">
+                  <a href="#" class="card-title">From Our Blog</a>
+                </h3>
+
+                <a href="#" class="btn-link">
+                  <span class="span">Our Store</span>
+
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+
+              </div>
+            </li>
+
+            <li class="flex-item">
+              <div class="blog-card">
+
+                <figure class="card-banner img-holder has-before hover:shine" style="--width: 700; --height: 450;">
+                  <img src="img/blog-3.jpg" width="700" height="450" loading="lazy" alt="Our Story"
+                    class="img-cover">
+                </figure>
+
+                <h3 class="h3">
+                  <a href="#" class="card-title">Our Story</a>
+                </h3>
+
+                <a href="#" class="btn-link">
+                  <span class="span">Our Store</span>
+
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+
+  <footer class="footer" data-section>
+    <div class="container">
+
+      <div class="footer-top">
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Company</p>
+          </li>
+
+          <li>
+            <p class="footer-list-text">
+              Find a location nearest you. See <a href="product.html" class="link">Our Stores</a>
+            </p>
+          </li>
+
+          <li>
+            <p class="footer-list-text bold" class="footer-link">+91-9023968933</p>
+          </li>
+
+          <li>
+            <a href="#"  class="footer-list-text" class="footer-link">loharp679@gmail.com</a>
+          </li>
+
+          <li>
+            <p class="footer-list-text bold">Follow us on instagram</p>
+          </li> 
+
+      
+          <li>
+            <a href="#" class="footer-list-text bold"><ion-icon name="logo-instagram"></ion-icon>lohar.11</a>
+          </li>
+
+
+
+
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Useful links</p>
+          </li>
+
+          <li>
+            <a href="product.html" class="footer-link">New Products</a>
+          </li>
+
+          <li>
+            <a href="#offer" class="footer-link">Best Sellers</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Bundle & Save</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Online Gift Card</a>
+          </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+          <li>
+            <p class="footer-list-title">Infomation</p>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Start a Return</a>
+          </li>
+
+          <li>
+            <a href="#contact-Form" class="footer-link">Contact Us</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Shipping FAQ</a>
+          </li>
+
+          <li>
+            <button onclick="window.location.href='terms.html'" style="all: unset; cursor: pointer;">
+              Terms & Conditions
+            </button>
+          </li>
+          
+
+          <li>
+            <a href="terms.html" class="footer-link">Privacy Policy</a>
+          </li>
+
+        </ul>
+
+        <div class="footer-list">
+
+          <p class="newsletter-title">Good emails.</p>
+
+          <p class="newsletter-text">
+            Enter your email below to be the first to know about new collections and product launches.
+          </p>
+
+          <form action="" class="newsletter-form">
+            <input type="email" name="email_address" placeholder="Enter your email address" required
+              class="email-field">
+
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <div class="wrapper">
+          <p class="copyright">
+            &copy; 2025 SkinCare 
+          </p>
+
+          <ul class="social-list">
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-youtube"></ion-icon>
+              </a>
+            </li>
+
+          </ul>
+        </div>
+
+        <a href="#" class="logo">
+          <img src="img/logo.png" width="179" height="26" loading="lazy" alt="Glowing">
+        </a>
+
+        <img src="img/pay.png" width="313" height="28" alt="available all payment method" class="w-100">
+
+      </div>
+
+    </div>
+  </footer>
+
+
+
+
+
+  <!-- 
+    - #BACK TO TOP
+  -->
+
+  <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="arrow-up" aria-hidden="true"></ion-icon>
+  </a>
+
+  <!-- Contact Form -->
+<!-- Contact Us Form -->
+<section id="contact" class="contact-Form">
+  <h2>Contact Us</h2>
+  <form id="contact-Form">
+    <div class="input-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div class="input-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div class="input-group">
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+    </div>
+    <button type="submit">Send Message</button>
+  </form>
+
+  <p id="formMessage" style="display: none; color: green;">Message Sent Successfully!</p>
+</section>
+
+
+<!-- Load JavaScript File -->
+<script type="module" src="contact.js"></script>
+
+    </section>
+
+
+  <!-- 
+    - custom js link
+  -->
+  <script src="web2.js" defer></script>
+
+  <!-- 
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+ 
+
+  
+  
+
+  
+
+</body>
+
+</html>
+</body>
+</html>
+
+
